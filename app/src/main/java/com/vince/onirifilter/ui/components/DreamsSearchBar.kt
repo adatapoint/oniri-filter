@@ -38,7 +38,7 @@ import com.vince.onirifilter.utils.PreviewContainer
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun SearchBar(
+fun DreamsSearchBar(
     modifier: Modifier = Modifier,
     onSearch: (String) -> Unit
 ) {
@@ -93,6 +93,6 @@ fun SearchBar(
 @Composable
 private fun PreviewSearchBar() {
     PreviewContainer {
-        SearchBar {}
+        DreamsSearchBar {}
     }
 }

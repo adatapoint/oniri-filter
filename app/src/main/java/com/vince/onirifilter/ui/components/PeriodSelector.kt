@@ -7,9 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -21,30 +19,22 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
 import com.vince.onirifilter.ui.theme.BackgroundColor
-import com.vince.onirifilter.ui.theme.OptionBackgroundColor
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
 fun PeriodSelector(
     modifier: Modifier = Modifier,
     title: String,
-    onHelpClick: () -> Unit,
+    onWhatIsThisClick: () -> Unit,
     initialDate: String,
     finalDate: String,
 ) {
-    Surface(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        shape = RoundedCornerShape(10.dp),
-        color = OptionBackgroundColor
-    ) {
+    SectionContainer(modifier = modifier) {
         Column(
-            modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
-            SectionHeader(sectionTitle = title) { onHelpClick.invoke() }
+            SectionHeader(sectionTitle = title) { onWhatIsThisClick.invoke() }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
@@ -88,7 +78,7 @@ private fun PreviewPeriodSelector() {
             title = "Period",
             initialDate = "December 18th, 2019",
             finalDate = "January 9th, 2020",
-            onHelpClick = {}
+            onWhatIsThisClick = {}
         )
     }
 }

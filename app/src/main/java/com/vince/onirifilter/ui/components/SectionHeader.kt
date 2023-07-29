@@ -19,7 +19,7 @@ import com.vince.onirifilter.utils.PreviewContainer
 fun SectionHeader(
     modifier: Modifier = Modifier,
     sectionTitle: String,
-    onHelpClick: () -> Unit,
+    onWhatIsThisClick: () -> Unit,
 ) {
     Row(
         modifier = modifier.fillMaxWidth(),
@@ -28,7 +28,7 @@ fun SectionHeader(
     ) {
         Text(color = Color.White.copy(alpha = 0.4f), text = sectionTitle)
         Image(
-            modifier = Modifier.clickable { onHelpClick.invoke() },
+            modifier = Modifier.clickable { onWhatIsThisClick.invoke() },
             painter = painterResource(id = R.drawable.ic_question),
             contentDescription = null
         )

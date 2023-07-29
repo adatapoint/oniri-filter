@@ -7,9 +7,6 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,7 +16,6 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.vince.onirifilter.ui.theme.OptionBackgroundColor
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
@@ -30,17 +26,8 @@ fun SectionCard(
     scaleLimits: Pair<String, String>,
     onHelpClick: () -> Unit,
 ) {
-    Surface(
-        modifier = modifier
-            .fillMaxWidth()
-            .wrapContentHeight(),
-        shape = RoundedCornerShape(10.dp),
-        color = OptionBackgroundColor
-    ) {
-        Column(
-            modifier = Modifier.padding(16.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
+    SectionContainer(modifier = modifier) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
             SectionHeader(sectionTitle = title) { onHelpClick.invoke() }
             Spacer(modifier = Modifier.height(24.dp))
             Column(modifier = Modifier.padding(horizontal = 32.dp)) {
@@ -82,7 +69,6 @@ private fun PreviewSectionCard() {
                             text = "1"
                         )
                     }
-
                     SelectableOption(
                         width = 48.dp,
                         height = 48.dp,
@@ -94,7 +80,6 @@ private fun PreviewSectionCard() {
                             text = "2"
                         )
                     }
-
                     SelectableOption(
                         width = 48.dp,
                         height = 48.dp,
@@ -106,7 +91,6 @@ private fun PreviewSectionCard() {
                             text = "3"
                         )
                     }
-
                     SelectableOption(
                         width = 48.dp,
                         height = 48.dp,

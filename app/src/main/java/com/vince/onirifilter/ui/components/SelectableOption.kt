@@ -5,8 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,16 +26,20 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
 import com.vince.onirifilter.ui.theme.OptionBackgroundColor
+import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
 fun SelectableOption(
     modifier: Modifier = Modifier,
-    size: Dp = 120.dp,
+    width: Dp = 120.dp,
+    height: Dp = 120.dp,
     isSelected: Boolean = false,
     content: @Composable (Boolean) -> Unit,
 ) {
     Surface(
-        modifier = modifier.size(size = size),
+        modifier = modifier
+            .width(width)
+            .height(height),
         shape = RoundedCornerShape(10.dp),
         color = if (isSelected) White else OptionBackgroundColor
     ) {
@@ -87,11 +91,13 @@ private fun PreviewSelectableOption() {
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
                 SelectableOption(
-                    size = 48.dp,
+                    width = 48.dp,
+                    height = 48.dp,
                     isSelected = true
                 ) { isSelected -> simpleContent(isSelected = isSelected).invoke() }
                 SelectableOption(
-                    size = 48.dp,
+                    width = 48.dp,
+                    height = 48.dp,
                     isSelected = false
                 ) { isSelected -> simpleContent(isSelected = isSelected).invoke() }
             }

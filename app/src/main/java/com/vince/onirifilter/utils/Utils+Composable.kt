@@ -1,4 +1,4 @@
-package com.vince.onirifilter.ui.components
+package com.vince.onirifilter.utils
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding

@@ -29,31 +29,35 @@ fun PeriodSelector(
     initialDate: String,
     finalDate: String,
 ) {
-    SectionContainer(modifier = modifier) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(8.dp)
-        ) {
-            SectionHeader(sectionTitle = title) { onWhatIsThisClick.invoke() }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            )
-            {
-                Text(modifier = Modifier.fillMaxWidth(0.2f), text = "From", color = Color.White)
-                DateText(modifier = Modifier.fillMaxWidth(), text = initialDate)
-            }
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+    SectionContainer(
+        modifier = modifier,
+        header = { SectionHeader(sectionTitle = title) { onWhatIsThisClick.invoke() } },
+        content = {
+            Column(
+                modifier = Modifier.padding(top = 8.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                Text(modifier = Modifier.fillMaxWidth(0.2f), text = "To", color = Color.White)
-                DateText(modifier = Modifier.fillMaxWidth(), text = finalDate)
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                )
+                {
+                    Text(modifier = Modifier.fillMaxWidth(0.2f), text = "From", color = Color.White)
+                    DateText(modifier = Modifier.fillMaxWidth(), text = initialDate)
+                }
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(modifier = Modifier.fillMaxWidth(0.2f), text = "To", color = Color.White)
+                    DateText(modifier = Modifier.fillMaxWidth(), text = finalDate)
+                }
             }
         }
-    }
+    )
 }
 
 @Composable

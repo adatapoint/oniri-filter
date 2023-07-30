@@ -22,25 +22,30 @@ import com.vince.onirifilter.utils.PreviewContainer
 fun SectionCard(
     modifier: Modifier = Modifier,
     title: String,
+    scaleLimits: Pair<String, String>? = null,
+    onWhatIsThisClick: () -> Unit,
     content: @Composable () -> Unit,
-    scaleLimits: Pair<String, String>,
-    onHelpClick: () -> Unit,
 ) {
     SectionContainer(modifier = modifier) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            SectionHeader(sectionTitle = title) { onHelpClick.invoke() }
+            SectionHeader(sectionTitle = title) { onWhatIsThisClick.invoke() }
             Spacer(modifier = Modifier.height(24.dp))
-            Column(modifier = Modifier.padding(horizontal = 32.dp)) {
+            Column(
+                modifier = Modifier.padding(horizontal = 32.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
                 content.invoke()
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(color = White.copy(alpha = 0.4f), text = scaleLimits.first)
-                    Text(color = White.copy(alpha = 0.4f), text = scaleLimits.second)
+                scaleLimits?.run {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(color = White.copy(alpha = 0.4f), text = scaleLimits.first)
+                        Text(color = White.copy(alpha = 0.4f), text = scaleLimits.second)
+                    }
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
@@ -54,15 +59,16 @@ private fun PreviewSectionCard() {
     PreviewContainer {
         SectionCard(
             title = "Dream length",
-            onHelpClick = {},
+            onWhatIsThisClick = {},
             scaleLimits = Pair("Very short", "Very long"),
             content = {
                 Row(horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     SelectableOption(
-                        width = 48.dp,
-                        height = 48.dp,
-                        isSelected = true
-                    ) { isSelected ->
+                        id = 1,
+                        size = 48.dp,
+                        isSelected = true,
+                        onClick = {}
+                    ) { isSelected, _ ->
                         Text(
                             color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
                             textAlign = TextAlign.Center,
@@ -70,10 +76,11 @@ private fun PreviewSectionCard() {
                         )
                     }
                     SelectableOption(
-                        width = 48.dp,
-                        height = 48.dp,
-                        isSelected = false
-                    ) { isSelected ->
+                        id = 2,
+                        size = 48.dp,
+                        isSelected = false,
+                        onClick = {}
+                    ) { isSelected, _ ->
                         Text(
                             color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
                             textAlign = TextAlign.Center,
@@ -81,10 +88,11 @@ private fun PreviewSectionCard() {
                         )
                     }
                     SelectableOption(
-                        width = 48.dp,
-                        height = 48.dp,
-                        isSelected = true
-                    ) { isSelected ->
+                        id = 1,
+                        size = 48.dp,
+                        isSelected = true,
+                        onClick = {}
+                    ) { isSelected, _ ->
                         Text(
                             color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
                             textAlign = TextAlign.Center,
@@ -92,10 +100,11 @@ private fun PreviewSectionCard() {
                         )
                     }
                     SelectableOption(
-                        width = 48.dp,
-                        height = 48.dp,
-                        isSelected = false
-                    ) { isSelected ->
+                        id = 1,
+                        size = 48.dp,
+                        isSelected = false,
+                        onClick = {}
+                    ) { isSelected, _ ->
                         Text(
                             color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
                             textAlign = TextAlign.Center,
@@ -103,10 +112,11 @@ private fun PreviewSectionCard() {
                         )
                     }
                     SelectableOption(
-                        width = 48.dp,
-                        height = 48.dp,
-                        isSelected = true
-                    ) { isSelected ->
+                        id = 1,
+                        size = 48.dp,
+                        isSelected = true,
+                        onClick = {}
+                    ) { isSelected, _ ->
                         Text(
                             color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
                             textAlign = TextAlign.Center,

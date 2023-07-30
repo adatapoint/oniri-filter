@@ -33,7 +33,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.OptionBackgroundColor
+import com.vince.onirifilter.ui.theme.SectionBackgroundColor
 import com.vince.onirifilter.utils.PreviewContainer
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -51,13 +51,14 @@ fun DreamsSearchBar(
             .fillMaxWidth()
             .height(55.dp),
         shape = RoundedCornerShape(20.dp),
-        color = OptionBackgroundColor,
+        color = SectionBackgroundColor,
     ) {
         Row(modifier = Modifier.fillMaxSize()) {
             OutlinedTextField(
                 modifier = Modifier
+                    .fillMaxWidth()
                     .align(CenterVertically)
-                    .padding(bottom = 4.dp),
+                    .padding(bottom = 4.dp, end = 8.dp),
                 colors = OutlinedTextFieldDefaults.colors(
                     focusedBorderColor = Transparent,
                     unfocusedBorderColor = Transparent

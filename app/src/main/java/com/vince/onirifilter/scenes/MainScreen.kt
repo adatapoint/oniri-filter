@@ -54,9 +54,9 @@ import com.vince.onirifilter.ui.components.SectionHeader
 import com.vince.onirifilter.ui.components.SelectableOption
 import com.vince.onirifilter.ui.components.TopBar
 import com.vince.onirifilter.ui.theme.Background
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.OptionBackground
 import com.vince.onirifilter.ui.theme.SectionBackground
-import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.bodyMedium
 import com.vince.onirifilter.ui.theme.titleLarge
 import com.vince.onirifilter.ui.theme.titleMedium
@@ -86,6 +86,12 @@ fun MainScreen(
     var sleepQualitySelection by remember { mutableStateOf(EMPTY) }
     var personallyInDreamSelection by remember { mutableStateOf(EMPTY) }
     var emotionMoodSelection by remember { mutableStateOf(EMPTY) }
+    var isAnyFilterSelected by remember {
+        mutableStateOf(
+            selectedDreamType.id != NO_VALUE || dreamLengthSelection != EMPTY || rateSelection != EMPTY ||
+                    sleepQualitySelection != EMPTY || personallyInDreamSelection != EMPTY || emotionMoodSelection != EMPTY
+        )
+    }
 
     fun resetScreen() {
         selectedDreamType = DreamType(NO_VALUE, EMPTY, NO_VALUE)
@@ -127,6 +133,17 @@ fun MainScreen(
     LaunchedEffect(Unit) { getRangeForFilters() }
     LaunchedEffect(Unit) { getDreamTypes() }
     LaunchedEffect(Unit) { getYesOrNoList() }
+    LaunchedEffect(
+        selectedDreamType,
+        dreamLengthSelection,
+        rateSelection,
+        sleepQualitySelection,
+        personallyInDreamSelection,
+        emotionMoodSelection
+    ) {
+        isAnyFilterSelected = selectedDreamType.id != NO_VALUE || dreamLengthSelection != EMPTY || rateSelection != EMPTY ||
+                sleepQualitySelection != EMPTY || personallyInDreamSelection != EMPTY || emotionMoodSelection != EMPTY
+    }
 
     Scaffold { paddingValues ->
         Column(
@@ -153,40 +170,42 @@ fun MainScreen(
                     color = White,
                     style = titleLarge
                 )
-                Box(
-                    modifier = Modifier
-                        .clip(shape = CircleShape)
-                        .background(color = SectionBackground)
-                        .size(50.dp)
-                        .clickable { resetScreen() }
-                ) {
-                    Icon(
-                        modifier = Modifier.align(Alignment.Center),
-                        painter = painterResource(id = R.drawable.ic_cancel),
-                        tint = Grey,
-                        contentDescription = null
-                    )
-                }
-                Spacer(modifier = Modifier.width(16.dp))
-                Row(
-                    modifier = Modifier
-                        .weight(0.25f)
-                        .clip(shape = RoundedCornerShape(20.dp))
-                        .fillMaxSize()
-                        .background(color = White)
-                        .clickable { context.showToast(context.getString(R.string.toast_applying_filters)) }
-                        .padding(8.dp),
-                    verticalAlignment = CenterVertically,
-                    horizontalArrangement = Arrangement.SpaceAround
-                ) {
-                    Icon(
-                        modifier = Modifier.size(15.dp),
-                        painter = painterResource(id = R.drawable.ic_checkmark),
-                        contentDescription = null,
-                        tint = Black
-                    )
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Text(style = titleMedium, text = stringResource(id = R.string.filter), color = Black)
+                if (isAnyFilterSelected) {
+                    Box(
+                        modifier = Modifier
+                            .clip(shape = CircleShape)
+                            .background(color = SectionBackground)
+                            .size(50.dp)
+                            .clickable { resetScreen() }
+                    ) {
+                        Icon(
+                            modifier = Modifier.align(Alignment.Center),
+                            painter = painterResource(id = R.drawable.ic_cancel),
+                            tint = Grey,
+                            contentDescription = null
+                        )
+                    }
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Row(
+                        modifier = Modifier
+                            .weight(0.25f)
+                            .clip(shape = RoundedCornerShape(20.dp))
+                            .fillMaxSize()
+                            .background(color = White)
+                            .clickable { context.showToast(context.getString(R.string.toast_applying_filters)) }
+                            .padding(8.dp),
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceAround
+                    ) {
+                        Icon(
+                            modifier = Modifier.size(15.dp),
+                            painter = painterResource(id = R.drawable.ic_checkmark),
+                            contentDescription = null,
+                            tint = Black
+                        )
+                        Spacer(modifier = Modifier.width(8.dp))
+                        Text(style = titleMedium, text = stringResource(id = R.string.filter), color = Black)
+                    }
                 }
             }
 
@@ -281,6 +300,7 @@ fun MainScreen(
                             isSelected = selectedDreamType == dreamType,
                             onClick = { selectedValue ->
                                 selectedDreamType = if (selectedDreamType == dreamType) {
+                                    rateSelection = EMPTY
                                     DreamType(NO_VALUE, EMPTY, NO_VALUE)
                                 } else {
                                     selectedValue as DreamType

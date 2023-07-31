@@ -1,8 +1,9 @@
 package com.vince.onirifilter.utils
 
+import com.vince.onirifilter.R
 import com.vince.onirifilter.domain.model.DreamType
 
-class RangeHelper {
+class BackendHelper {
 
     companion object {
         // Since we won't be adding or subtracting this ranges
@@ -15,8 +16,13 @@ class RangeHelper {
         val range: List<String> = listOf(range1, range2, range3, range4, range5)
 
         val dreamTypes: List<DreamType> = listOf(
-            DreamType(id = 1, type = "Dream"),
-            DreamType(id = 2, type = "Nightmare")
+            DreamType(id = 1, type = "Dream", R.drawable.ic_dream),
+            DreamType(id = 2, type = "Nightmare", R.drawable.ic_nightmare),
+        )
+
+        val yesOrNoList: Map<Int, String> = mapOf(
+            0 to "No",
+            1 to "Yes",
         )
     }
 }

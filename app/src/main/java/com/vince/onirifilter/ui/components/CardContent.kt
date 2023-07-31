@@ -1,19 +1,21 @@
 package com.vince.onirifilter.ui.components
 
 import androidx.annotation.DrawableRes
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.Color.Companion.Black
+import androidx.compose.ui.graphics.Color.Companion.Unspecified
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
+import com.vince.onirifilter.ui.theme.WhiteWithAlpha
+import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
@@ -26,15 +28,16 @@ fun CardContent(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Image(
+        Icon(
             painter = painterResource(id = imageResource),
-            colorFilter = ColorFilter.tint(color = if (isSelected) Color.Black else Color.White.copy(alpha = 0.4f)),
-            contentDescription = null
+            tint = if (isSelected) Black else Unspecified,
+            contentDescription = null,
         )
         Text(
-            color = if (isSelected) Color.Black else Color.White.copy(alpha = 0.4f),
+            color = if (isSelected) Black else WhiteWithAlpha,
             textAlign = TextAlign.Center,
-            text = text
+            text = text,
+            style = titleMedium,
         )
     }
 }

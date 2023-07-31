@@ -2,6 +2,7 @@ package com.vince.onirifilter.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
 import com.vince.onirifilter.ui.theme.BackgroundColor
+import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
@@ -28,6 +30,7 @@ fun PeriodSelector(
     onWhatIsThisClick: () -> Unit,
     initialDate: String,
     finalDate: String,
+    onPickDateClick: () -> Unit,
 ) {
     SectionContainer(
         modifier = modifier,
@@ -39,21 +42,42 @@ fun PeriodSelector(
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onPickDateClick.invoke() },
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
-                )
-                {
-                    Text(modifier = Modifier.fillMaxWidth(0.2f), text = "From", color = Color.White)
-                    DateText(modifier = Modifier.fillMaxWidth(), text = initialDate)
+                ) {
+                    Text(
+                        style = titleMedium,
+                        modifier = Modifier.fillMaxWidth(0.2f),
+                        text = "From",
+                        color = Color.White
+                    )
+                    DateText(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onPickDateClick.invoke() },
+                        text = initialDate
+                    )
                 }
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(modifier = Modifier.fillMaxWidth(0.2f), text = "To", color = Color.White)
-                    DateText(modifier = Modifier.fillMaxWidth(), text = finalDate)
+                    Text(
+                        style = titleMedium,
+                        modifier = Modifier.fillMaxWidth(0.2f),
+                        text = "To",
+                        color = Color.White
+                    )
+                    DateText(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .clickable { onPickDateClick.invoke() },
+                        text = finalDate
+                    )
                 }
             }
         }
@@ -70,7 +94,7 @@ fun DateText(modifier: Modifier = Modifier, text: String) {
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         Image(painter = painterResource(id = R.drawable.ic_calendar), contentDescription = null)
-        Text(text = text, color = Color.White)
+        Text(text = text, color = Color.White, style = titleMedium)
     }
 }
 
@@ -82,7 +106,8 @@ private fun PreviewPeriodSelector() {
             title = "Period",
             initialDate = "December 18th, 2019",
             finalDate = "January 9th, 2020",
-            onWhatIsThisClick = {}
+            onWhatIsThisClick = {},
+            onPickDateClick = {}
         )
     }
 }

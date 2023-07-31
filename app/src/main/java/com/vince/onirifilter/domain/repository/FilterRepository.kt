@@ -7,4 +7,6 @@ interface FilterRepository {
     fun getRange(): CallResult<List<String>>
 
     fun getDreamTypes(): CallResult<List<DreamType>>
+
+    fun getYesOrNoList(): CallResult<Map<Int, String>>
 }

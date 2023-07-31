@@ -12,14 +12,3 @@ fun PreviewContainer(content: @Composable () -> Unit) {
         content()
     }
 }
-
-fun Modifier.conditional(
-    condition: Boolean,
-    ifTrue: Modifier.() -> Modifier,
-    ifFalse: (Modifier.() -> Modifier)? = null
-): Modifier =
-    when {
-        condition -> then(ifTrue(this))
-        ifFalse != null -> then(ifFalse(this))
-        else -> this
-    }

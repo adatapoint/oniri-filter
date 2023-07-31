@@ -16,6 +16,8 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.vince.onirifilter.ui.theme.IconAlpha
+import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
@@ -31,8 +33,8 @@ fun SectionCard(
             SectionHeader(sectionTitle = title) { onWhatIsThisClick.invoke() }
             Spacer(modifier = Modifier.height(24.dp))
             Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier.padding(horizontal = 32.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 content.invoke()
                 scaleLimits?.run {
@@ -43,8 +45,8 @@ fun SectionCard(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(color = White.copy(alpha = 0.4f), text = scaleLimits.first)
-                        Text(color = White.copy(alpha = 0.4f), text = scaleLimits.second)
+                        Text(color = White.copy(alpha = IconAlpha), text = scaleLimits.first, style = titleMedium)
+                        Text(color = White.copy(alpha = IconAlpha), text = scaleLimits.second, style = titleMedium)
                     }
                 }
             }
@@ -70,7 +72,7 @@ private fun PreviewSectionCard() {
                         onClick = {}
                     ) { isSelected, _ ->
                         Text(
-                            color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
+                            color = if (isSelected) Color.Black else White.copy(alpha = IconAlpha),
                             textAlign = TextAlign.Center,
                             text = "1"
                         )
@@ -82,7 +84,7 @@ private fun PreviewSectionCard() {
                         onClick = {}
                     ) { isSelected, _ ->
                         Text(
-                            color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
+                            color = if (isSelected) Color.Black else White.copy(alpha = IconAlpha),
                             textAlign = TextAlign.Center,
                             text = "2"
                         )
@@ -94,7 +96,7 @@ private fun PreviewSectionCard() {
                         onClick = {}
                     ) { isSelected, _ ->
                         Text(
-                            color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
+                            color = if (isSelected) Color.Black else White.copy(alpha = IconAlpha),
                             textAlign = TextAlign.Center,
                             text = "3"
                         )
@@ -106,7 +108,7 @@ private fun PreviewSectionCard() {
                         onClick = {}
                     ) { isSelected, _ ->
                         Text(
-                            color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
+                            color = if (isSelected) Color.Black else White.copy(alpha = IconAlpha),
                             textAlign = TextAlign.Center,
                             text = "4"
                         )
@@ -118,7 +120,7 @@ private fun PreviewSectionCard() {
                         onClick = {}
                     ) { isSelected, _ ->
                         Text(
-                            color = if (isSelected) Color.Black else White.copy(alpha = 0.4f),
+                            color = if (isSelected) Color.Black else White.copy(alpha = IconAlpha),
                             textAlign = TextAlign.Center,
                             text = "5"
                         )

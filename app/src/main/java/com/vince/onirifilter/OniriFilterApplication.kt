@@ -6,6 +6,7 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.multidex.MultiDexApplication
 import com.vince.onirifilter.injection.applicationModule
+import com.vince.onirifilter.injection.dataModule
 import com.vince.onirifilter.injection.domainModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -40,7 +41,7 @@ class OniriFilterApplication : MultiDexApplication() {
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@OniriFilterApplication)
-            modules(applicationModule, domainModule)
+            modules(applicationModule, domainModule, dataModule)
         }
     }
 }

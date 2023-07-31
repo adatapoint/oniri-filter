@@ -42,7 +42,8 @@ private fun PreviewSectionContainer() {
                 title = "Period",
                 initialDate = "December 18th, 2019",
                 finalDate = "January 9th, 2020",
-                onWhatIsThisClick = {}
+                onWhatIsThisClick = {},
+                onPickDateClick = {}
             )
         }
     }

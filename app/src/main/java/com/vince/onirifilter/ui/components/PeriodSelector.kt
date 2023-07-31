@@ -19,7 +19,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.BackgroundColor
+import com.vince.onirifilter.ui.theme.Background
 import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
@@ -89,7 +89,7 @@ fun DateText(modifier: Modifier = Modifier, text: String) {
     Row(
         modifier = modifier
             .clip(shape = RoundedCornerShape(15.dp))
-            .background(color = BackgroundColor)
+            .background(color = Background)
             .padding(vertical = 16.dp, horizontal = 20.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp)
     ) {

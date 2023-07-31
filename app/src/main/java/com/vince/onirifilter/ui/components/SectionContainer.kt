@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.vince.onirifilter.ui.theme.SectionBackgroundColor
+import com.vince.onirifilter.ui.theme.SectionBackground
 import com.vince.onirifilter.utils.PreviewContainer
 
 @Composable
@@ -24,7 +24,7 @@ fun SectionContainer(
             .fillMaxWidth()
             .wrapContentHeight(),
         shape = RoundedCornerShape(20.dp),
-        color = SectionBackgroundColor,
+        color = SectionBackground,
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             header?.invoke()

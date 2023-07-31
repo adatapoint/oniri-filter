@@ -14,7 +14,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.WhiteWithAlpha
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
@@ -34,7 +34,7 @@ fun CardContent(
             contentDescription = null,
         )
         Text(
-            color = if (isSelected) Black else WhiteWithAlpha,
+            color = if (isSelected) Black else Grey,
             textAlign = TextAlign.Center,
             text = text,
             style = titleMedium,

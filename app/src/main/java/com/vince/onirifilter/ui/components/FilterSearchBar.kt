@@ -27,7 +27,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color.Companion.Transparent
 import androidx.compose.ui.graphics.Color.Companion.Unspecified
-import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
@@ -35,8 +34,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.IconAlpha
-import com.vince.onirifilter.ui.theme.SectionBackgroundColor
+import com.vince.onirifilter.ui.theme.SectionBackground
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.bodyMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
@@ -55,7 +54,7 @@ fun FilterSearchBar(
             .fillMaxWidth()
             .height(55.dp),
         shape = RoundedCornerShape(20.dp),
-        color = SectionBackgroundColor,
+        color = SectionBackground,
     ) {
         Box(modifier = Modifier.clip(RoundedCornerShape(20.dp))) {
             OutlinedTextField(
@@ -73,7 +72,7 @@ fun FilterSearchBar(
                 onValueChange = { text = it },
                 placeholder = {
                     Text(
-                        color = White.copy(alpha = IconAlpha),
+                        color = Grey,
                         text = "Search in your dreams...",
                         style = bodyMedium
                     )

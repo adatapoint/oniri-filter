@@ -53,10 +53,10 @@ import com.vince.onirifilter.ui.components.SectionContainer
 import com.vince.onirifilter.ui.components.SectionHeader
 import com.vince.onirifilter.ui.components.SelectableOption
 import com.vince.onirifilter.ui.components.TopBar
-import com.vince.onirifilter.ui.theme.BackgroundColor
-import com.vince.onirifilter.ui.theme.OptionBackgroundColor
-import com.vince.onirifilter.ui.theme.SectionBackgroundColor
-import com.vince.onirifilter.ui.theme.WhiteWithAlpha
+import com.vince.onirifilter.ui.theme.Background
+import com.vince.onirifilter.ui.theme.OptionBackground
+import com.vince.onirifilter.ui.theme.SectionBackground
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.bodyMedium
 import com.vince.onirifilter.ui.theme.titleLarge
 import com.vince.onirifilter.ui.theme.titleMedium
@@ -132,7 +132,7 @@ fun MainScreen(
         Column(
             modifier = Modifier
                 .verticalScroll(rememberScrollState())
-                .background(color = BackgroundColor)
+                .background(color = Background)
                 .padding(paddingValues)
                 .padding(horizontal = 12.dp, vertical = 8.dp)
                 .padding(bottom = 16.dp)
@@ -156,14 +156,14 @@ fun MainScreen(
                 Box(
                     modifier = Modifier
                         .clip(shape = CircleShape)
-                        .background(color = SectionBackgroundColor)
+                        .background(color = SectionBackground)
                         .size(50.dp)
                         .clickable { resetScreen() }
                 ) {
                     Icon(
                         modifier = Modifier.align(Alignment.Center),
                         painter = painterResource(id = R.drawable.ic_cancel),
-                        tint = WhiteWithAlpha,
+                        tint = Grey,
                         contentDescription = null
                     )
                 }
@@ -220,7 +220,7 @@ fun MainScreen(
                         Text(
                             modifier = Modifier.align(CenterVertically),
                             text = stringResource(id = R.string.sort_by_date),
-                            color = WhiteWithAlpha,
+                            color = Grey,
                             style = titleMedium
                         )
                         Spacer(modifier = Modifier.width(8.dp))
@@ -257,11 +257,11 @@ fun MainScreen(
                         .fillMaxWidth()
                         .height(50.dp)
                         .clip(shape = RoundedCornerShape(20.dp))
-                        .background(color = OptionBackgroundColor)
+                        .background(color = OptionBackground)
                         .padding(horizontal = 16.dp)
                         .clickable { context.showToast(context.getString(R.string.toast_adding_symbols)) },
                     verticalArrangement = Arrangement.Center
-                ) { Text(text = stringResource(id = R.string.add_symbols), color = WhiteWithAlpha, style = titleMedium) }
+                ) { Text(text = stringResource(id = R.string.add_symbols), color = Grey, style = titleMedium) }
             }
 
             // Dream type
@@ -291,12 +291,12 @@ fun MainScreen(
                                 Icon(
                                     painter = painterResource(id = (selectedDreamType as DreamType).icon),
                                     contentDescription = null,
-                                    tint = if (isSelected) Black else WhiteWithAlpha,
+                                    tint = if (isSelected) Black else Grey,
                                 )
                                 Spacer(modifier = Modifier.height(8.dp))
                                 Text(
                                     text = selectedDreamType.type,
-                                    color = if (isSelected) Black else WhiteWithAlpha,
+                                    color = if (isSelected) Black else Grey,
                                     style = titleMedium
                                 )
                             }
@@ -336,7 +336,7 @@ fun MainScreen(
                                 Text(
                                     style = bodyMedium,
                                     text = id.toString(),
-                                    color = if (isSelected) Black else WhiteWithAlpha
+                                    color = if (isSelected) Black else Grey
                                 )
                             }
                         }
@@ -352,7 +352,7 @@ fun MainScreen(
                 ) {
                     Text(
                         text = stringResource(id = R.string.rate_disclaimer),
-                        color = WhiteWithAlpha,
+                        color = Grey,
                         style = bodyMedium
                     )
                 }
@@ -372,7 +372,7 @@ fun MainScreen(
                         .fillMaxWidth()
                         .height(50.dp)
                         .clip(shape = RoundedCornerShape(20.dp))
-                        .background(color = OptionBackgroundColor)
+                        .background(color = OptionBackground)
                         .padding(horizontal = 8.dp)
                         .clickable { context.showToast(context.getString(R.string.toast_adding_emotions)) },
                     horizontalAlignment = Alignment.CenterHorizontally,
@@ -407,7 +407,7 @@ fun MainScreen(
                                 }
                             }
                         ) { isSelected, id ->
-                            Text(text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                            Text(text = id.toString(), color = if (isSelected) Black else Grey)
                         }
                     }
                 }
@@ -437,7 +437,7 @@ fun MainScreen(
                                 }
                             }
                         ) { isSelected, id ->
-                            Text(text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                            Text(text = id.toString(), color = if (isSelected) Black else Grey)
                         }
                     }
                 }
@@ -467,7 +467,7 @@ fun MainScreen(
                                     }
                                 }
                             ) { isSelected, id ->
-                                Text(text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                                Text(text = id.toString(), color = if (isSelected) Black else Grey)
                             }
                         }
 
@@ -499,7 +499,7 @@ fun MainScreen(
                                     }
                                 }
                             ) { isSelected, id ->
-                                Text(text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                                Text(text = id.toString(), color = if (isSelected) Black else Grey)
                             }
                         }
                     }

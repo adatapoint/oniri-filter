@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.WhiteWithAlpha
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
@@ -27,7 +27,7 @@ fun SectionHeader(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Text(color = WhiteWithAlpha, text = sectionTitle, style = titleMedium)
+        Text(color = Grey, text = sectionTitle, style = titleMedium)
         Image(
             modifier = Modifier.clickable { onWhatIsThisClick.invoke() },
             painter = painterResource(id = R.drawable.ic_question),

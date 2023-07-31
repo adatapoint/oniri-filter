@@ -23,10 +23,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
-import com.vince.onirifilter.ui.theme.IconAlpha
-import com.vince.onirifilter.ui.theme.OptionBackgroundColor
-import com.vince.onirifilter.ui.theme.WhiteWithAlpha
-import com.vince.onirifilter.ui.theme.bodyMedium
+import com.vince.onirifilter.ui.theme.OptionBackground
+import com.vince.onirifilter.ui.theme.Grey
 import com.vince.onirifilter.ui.theme.titleMedium
 import com.vince.onirifilter.utils.PreviewContainer
 
@@ -50,7 +48,7 @@ fun SelectableOption(
                 onValueChange = { onClick.invoke(id) },
             ),
         shape = RoundedCornerShape(10.dp),
-        color = if (isSelected) White else OptionBackgroundColor
+        color = if (isSelected) White else OptionBackground
     ) {
         Box(
             modifier = Modifier.padding(8.dp),
@@ -66,9 +64,10 @@ private fun PreviewSelectableOption() {
     @Composable
     fun simpleContent(isSelected: Boolean): @Composable () -> Unit = {
         Text(
-            color = if (isSelected) Black else White.copy(alpha = IconAlpha),
+            color = if (isSelected) Black else Grey,
             textAlign = TextAlign.Center,
-            text = "3"
+            text = "3",
+            style = titleMedium
         )
     }
     PreviewContainer {
@@ -125,7 +124,7 @@ private fun PreviewSelectableOption() {
                     isSelected = true,
                     onClick = {}
                 ) { isSelected, id ->
-                    Text(style = titleMedium, text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                    Text(style = titleMedium, text = id.toString(), color = if (isSelected) Black else Grey)
                 }
                 SelectableOption(
                     id = "No",
@@ -134,7 +133,7 @@ private fun PreviewSelectableOption() {
                     isSelected = false,
                     onClick = {}
                 ) { isSelected, id ->
-                    Text(style = titleMedium, text = id.toString(), color = if (isSelected) Black else WhiteWithAlpha)
+                    Text(style = titleMedium, text = id.toString(), color = if (isSelected) Black else Grey)
                 }
             }
         }

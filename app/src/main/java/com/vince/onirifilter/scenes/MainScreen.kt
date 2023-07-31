@@ -46,6 +46,7 @@ import com.vince.onirifilter.R
 import com.vince.onirifilter.data.CallResult.Failure
 import com.vince.onirifilter.data.CallResult.Success
 import com.vince.onirifilter.domain.model.DreamType
+import com.vince.onirifilter.ui.components.AddableOption
 import com.vince.onirifilter.ui.components.FilterSearchBar
 import com.vince.onirifilter.ui.components.PeriodSelector
 import com.vince.onirifilter.ui.components.SectionCard
@@ -55,7 +56,6 @@ import com.vince.onirifilter.ui.components.SelectableOption
 import com.vince.onirifilter.ui.components.TopBar
 import com.vince.onirifilter.ui.theme.Background
 import com.vince.onirifilter.ui.theme.Grey
-import com.vince.onirifilter.ui.theme.OptionBackground
 import com.vince.onirifilter.ui.theme.SectionBackground
 import com.vince.onirifilter.ui.theme.bodyMedium
 import com.vince.onirifilter.ui.theme.titleLarge
@@ -86,12 +86,7 @@ fun MainScreen(
     var sleepQualitySelection by remember { mutableStateOf(EMPTY) }
     var personallyInDreamSelection by remember { mutableStateOf(EMPTY) }
     var emotionMoodSelection by remember { mutableStateOf(EMPTY) }
-    var isAnyFilterSelected by remember {
-        mutableStateOf(
-            selectedDreamType.id != NO_VALUE || dreamLengthSelection != EMPTY || rateSelection != EMPTY ||
-                    sleepQualitySelection != EMPTY || personallyInDreamSelection != EMPTY || emotionMoodSelection != EMPTY
-        )
-    }
+    var isAnyFilterSelected by remember { mutableStateOf(false) }
 
     fun resetScreen() {
         selectedDreamType = DreamType(NO_VALUE, EMPTY, NO_VALUE)
@@ -263,35 +258,18 @@ fun MainScreen(
             )
 
             // Symbols within the dream
-            SectionContainer(
-                header = {
-                    SectionHeader(sectionTitle = stringResource(id = R.string.title_symbols)) {
-                        onWhatIsThisClick.invoke()
-                    }
-                }
-            ) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .clip(shape = RoundedCornerShape(20.dp))
-                        .background(color = OptionBackground)
-                        .padding(horizontal = 16.dp)
-                        .clickable { context.showToast(context.getString(R.string.toast_adding_symbols)) },
-                    verticalArrangement = Arrangement.Center
-                ) { Text(text = stringResource(id = R.string.add_symbols), color = Grey, style = titleMedium) }
-            }
+            AddableOption(
+                title = stringResource(id = R.string.title_symbols),
+                buttonText = stringResource(id = R.string.add_symbols),
+                onWhatIsThisClick = { onWhatIsThisClick.invoke() }
+            ) { context.showToast(context.getString(R.string.toast_adding_symbols)) }
 
             // Dream type
             SectionCard(
                 title = stringResource(id = R.string.title_type),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() }
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(dreamTypes.size, key = { index -> index }) { position ->
                         val dreamType = dreamTypes[position]
                         SelectableOption(
@@ -335,10 +313,7 @@ fun MainScreen(
                     ),
                     onWhatIsThisClick = { onWhatIsThisClick.invoke() },
                 ) {
-                    LazyRow(
-                        state = listState,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp),
-                    ) {
+                    LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                         items(rangeList.size, key = { index -> index }) { position ->
                             val value = rangeList[position]
                             SelectableOption(
@@ -379,26 +354,11 @@ fun MainScreen(
             }
 
             // Emotions
-            SectionContainer(
-                header = {
-                    SectionHeader(sectionTitle = stringResource(id = R.string.title_emotions)) {
-                        onWhatIsThisClick.invoke()
-                    }
-                }
-            ) {
-                Spacer(modifier = Modifier.height(8.dp))
-                Column(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(50.dp)
-                        .clip(shape = RoundedCornerShape(20.dp))
-                        .background(color = OptionBackground)
-                        .padding(horizontal = 8.dp)
-                        .clickable { context.showToast(context.getString(R.string.toast_adding_emotions)) },
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.Center
-                ) { Text(text = "+ Add emotions", color = White) }
-            }
+            AddableOption(
+                title = stringResource(id = R.string.title_emotions),
+                buttonText = stringResource(id = R.string.add_emotions),
+                onWhatIsThisClick = { onWhatIsThisClick.invoke() }
+            ) { context.showToast(context.getString(R.string.toast_adding_emotions)) }
 
             Spacer(modifier = Modifier.height(16.dp))
             Text(text = stringResource(id = R.string.title_advanced), color = White, style = titleLarge)
@@ -409,10 +369,7 @@ fun MainScreen(
                 scaleLimits = Pair(stringResource(id = R.string.limit_very_short), stringResource(id = R.string.limit_very_long)),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(rangeList.size, key = { index -> index }) { position ->
                         val value = rangeList[position]
                         SelectableOption(
@@ -439,10 +396,7 @@ fun MainScreen(
                 scaleLimits = Pair(stringResource(id = R.string.limit_very_bad), stringResource(id = R.string.limit_very_good)),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     items(rangeList.size, key = { index -> index }) { position ->
                         val value = rangeList[position]
                         SelectableOption(
@@ -468,10 +422,7 @@ fun MainScreen(
                 title = stringResource(id = R.string.title_personally_in_dream),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     yesOrNoList.forEach { value ->
                         item {
                             SelectableOption(
@@ -486,11 +437,8 @@ fun MainScreen(
                                         id
                                     }
                                 }
-                            ) { isSelected, id ->
-                                Text(text = id.toString(), color = if (isSelected) Black else Grey)
-                            }
+                            ) { isSelected, id -> Text(text = id.toString(), color = if (isSelected) Black else Grey) }
                         }
-
                     }
                 }
             }
@@ -500,10 +448,7 @@ fun MainScreen(
                 title = stringResource(id = R.string.title_emotions_correspond_mood),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
-                LazyRow(
-                    state = listState,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
+                LazyRow(state = listState, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     yesOrNoList.forEach { value ->
                         item {
                             SelectableOption(

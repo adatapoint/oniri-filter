@@ -22,6 +22,7 @@
     <string name="title_type">Type</string>
     <string name="title_rate">Rate</string>
     <string name="title_emotions">Emotions</string>
+    <string name="add_emotions">+ Add emotions</string>
     <string name="rate_disclaimer">You need to choose a type in order to filter by rate.</string>
     <string name="limit_very_bad">Very bad</string>
     <string name="limit_very_good">Very good</string>

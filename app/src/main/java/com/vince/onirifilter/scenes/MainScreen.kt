@@ -40,6 +40,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.vince.onirifilter.R
 import com.vince.onirifilter.data.CallResult.Failure
@@ -148,7 +149,7 @@ fun MainScreen(
             ) {
                 Text(
                     modifier = Modifier.weight(0.6f),
-                    text = "Filters",
+                    text = stringResource(id = R.string.title_filters),
                     color = White,
                     style = titleLarge
                 )
@@ -173,7 +174,7 @@ fun MainScreen(
                         .clip(shape = RoundedCornerShape(20.dp))
                         .fillMaxSize()
                         .background(color = White)
-                        .clickable { context.showToast("Applying filters...") }
+                        .clickable { context.showToast(context.getString(R.string.toast_applying_filters)) }
                         .padding(8.dp),
                     verticalAlignment = CenterVertically,
                     horizontalArrangement = Arrangement.SpaceAround
@@ -185,16 +186,15 @@ fun MainScreen(
                         tint = Black
                     )
                     Spacer(modifier = Modifier.width(8.dp))
-                    Text(style = titleMedium, text = "Filter", color = Black)
+                    Text(style = titleMedium, text = stringResource(id = R.string.filter), color = Black)
                 }
-
             }
 
             // Sort by
             SectionContainer(
                 modifier = Modifier
                     .wrapContentHeight()
-                    .clickable { context.showToast("Sorting by...") }
+                    .clickable { context.showToast(context.getString(R.string.sorting_by)) }
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -211,7 +211,7 @@ fun MainScreen(
                         )
                         Text(
                             modifier = Modifier.align(CenterVertically),
-                            text = "Sort by",
+                            text = stringResource(id = R.string.sort_by),
                             color = White,
                             style = titleMedium
                         )
@@ -219,7 +219,7 @@ fun MainScreen(
                     Row(modifier = Modifier.weight(0.5f)) {
                         Text(
                             modifier = Modifier.align(CenterVertically),
-                            text = "Date (most recent)",
+                            text = stringResource(id = R.string.sort_by_date),
                             color = WhiteWithAlpha,
                             style = titleMedium
                         )
@@ -236,17 +236,17 @@ fun MainScreen(
             }
             FilterSearchBar(onSearch = { query -> onSearch.invoke(query) })
             PeriodSelector(
-                title = "Period",
+                title = stringResource(id = R.string.title_period),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
-                initialDate = "December 18th, 2019",
-                finalDate = "January 9th, 2020",
-                onPickDateClick = { context.showToast("Pick a date...") }
+                initialDate = "December 18th, 2019", // This will be hardcoded because
+                finalDate = "January 9th, 2020", // is just example data
+                onPickDateClick = { context.showToast(context.getString(R.string.toast_pick_a_date)) }
             )
 
             // Symbols within the dream
             SectionContainer(
                 header = {
-                    SectionHeader(sectionTitle = "Symbols") {
+                    SectionHeader(sectionTitle = stringResource(id = R.string.title_symbols)) {
                         onWhatIsThisClick.invoke()
                     }
                 }
@@ -259,14 +259,14 @@ fun MainScreen(
                         .clip(shape = RoundedCornerShape(20.dp))
                         .background(color = OptionBackgroundColor)
                         .padding(horizontal = 16.dp)
-                        .clickable { context.showToast("Adding symbols...") },
+                        .clickable { context.showToast(context.getString(R.string.toast_adding_symbols)) },
                     verticalArrangement = Arrangement.Center
-                ) { Text(text = "+ Add symbols", color = WhiteWithAlpha, style = titleMedium) }
+                ) { Text(text = stringResource(id = R.string.add_symbols), color = WhiteWithAlpha, style = titleMedium) }
             }
 
             // Dream type
             SectionCard(
-                title = "Type",
+                title = stringResource(id = R.string.title_type),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() }
             ) {
                 LazyRow(
@@ -308,8 +308,11 @@ fun MainScreen(
             // Rate
             if (selectedDreamType.id != NO_VALUE) {
                 SectionCard(
-                    title = "Rate",
-                    scaleLimits = Pair("Very bad", "Very good"),
+                    title = stringResource(id = R.string.title_rate),
+                    scaleLimits = Pair(
+                        stringResource(id = R.string.limit_very_bad),
+                        stringResource(id = R.string.limit_very_good)
+                    ),
                     onWhatIsThisClick = { onWhatIsThisClick.invoke() },
                 ) {
                     LazyRow(
@@ -342,13 +345,13 @@ fun MainScreen(
             } else {
                 SectionContainer(
                     header = {
-                        SectionHeader(sectionTitle = "Rate") {
+                        SectionHeader(sectionTitle = stringResource(id = R.string.title_rate)) {
                             onWhatIsThisClick.invoke()
                         }
                     }
                 ) {
                     Text(
-                        text = "You need to choose a type in order to filter by rate.",
+                        text = stringResource(id = R.string.rate_disclaimer),
                         color = WhiteWithAlpha,
                         style = bodyMedium
                     )
@@ -358,7 +361,7 @@ fun MainScreen(
             // Emotions
             SectionContainer(
                 header = {
-                    SectionHeader(sectionTitle = "Emotions") {
+                    SectionHeader(sectionTitle = stringResource(id = R.string.title_emotions)) {
                         onWhatIsThisClick.invoke()
                     }
                 }
@@ -371,19 +374,19 @@ fun MainScreen(
                         .clip(shape = RoundedCornerShape(20.dp))
                         .background(color = OptionBackgroundColor)
                         .padding(horizontal = 8.dp)
-                        .clickable { context.showToast("Adding emotions...") },
+                        .clickable { context.showToast(context.getString(R.string.toast_adding_emotions)) },
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) { Text(text = "+ Add emotions", color = White) }
             }
 
             Spacer(modifier = Modifier.height(16.dp))
-            Text(text = "Advanced", color = White, style = titleLarge)
+            Text(text = stringResource(id = R.string.title_advanced), color = White, style = titleLarge)
 
             // Dream length
             SectionCard(
-                title = "Dream length",
-                scaleLimits = Pair("Very short", "Very long"),
+                title = stringResource(id = R.string.title_dream_length),
+                scaleLimits = Pair(stringResource(id = R.string.limit_very_short), stringResource(id = R.string.limit_very_long)),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
                 LazyRow(
@@ -412,8 +415,8 @@ fun MainScreen(
 
             // Sleep quality
             SectionCard(
-                title = "Sleep quality",
-                scaleLimits = Pair("Very bad", "Very good"),
+                title = stringResource(id = R.string.title_sleep_quality),
+                scaleLimits = Pair(stringResource(id = R.string.limit_very_bad), stringResource(id = R.string.limit_very_good)),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
                 LazyRow(
@@ -442,7 +445,7 @@ fun MainScreen(
 
             // Personally in dream
             SectionCard(
-                title = "Personally in dream",
+                title = stringResource(id = R.string.title_personally_in_dream),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
                 LazyRow(
@@ -474,7 +477,7 @@ fun MainScreen(
 
             // Emotions correspond to mood
             SectionCard(
-                title = "Emotions correspond to mood",
+                title = stringResource(id = R.string.title_emotions_correspond_mood),
                 onWhatIsThisClick = { onWhatIsThisClick.invoke() },
             ) {
                 LazyRow(

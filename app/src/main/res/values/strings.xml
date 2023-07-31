@@ -2,4 +2,37 @@
     <string name="app_name">OniriFilter</string>
     <string name="dream">Dream</string>
     <string name="web_site">https://www.oniri.io/</string>
+
+    <!--  Toasts  -->
+    <string name="toast_search_query">Searching for "%s" in your previous dreams…</string>
+    <string name="toast_applying_filters">Applying filters…</string>
+    <string name="toast_pick_a_date">Pick a date…</string>
+    <string name="toast_adding_symbols">Adding symbols…</string>
+    <string name="toast_adding_emotions">Adding emotions…</string>
+
+    <!-- Main Activity -->
+    <string name="title_filters">Filters</string>
+    <string name="filter">Filter</string>
+    <string name="sorting_by">Sorting by…</string>
+    <string name="sort_by">Sort by…</string>
+    <string name="sort_by_date">Date (most recent)</string>
+    <string name="title_period">Period</string>
+    <string name="title_symbols">Symbols</string>
+    <string name="add_symbols">+ Add symbols</string>
+    <string name="title_type">Type</string>
+    <string name="title_rate">Rate</string>
+    <string name="title_emotions">Emotions</string>
+    <string name="rate_disclaimer">You need to choose a type in order to filter by rate.</string>
+    <string name="limit_very_bad">Very bad</string>
+    <string name="limit_very_good">Very good</string>
+    <string name="limit_very_short">Very short</string>
+    <string name="limit_very_long">Very long</string>
+    <string name="title_dream_length">Dream length</string>
+    <string name="title_sleep_quality">Sleep quality</string>
+    <string name="title_personally_in_dream">Personally in dream</string>
+    <string name="title_emotions_correspond_mood">Emotions correspond to mood</string>
+
+
+
+    <string name="title_advanced">Advanced</string>
 </resources>
